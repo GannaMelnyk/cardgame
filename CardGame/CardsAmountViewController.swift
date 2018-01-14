@@ -11,12 +11,12 @@ import UIKit
 class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     var amount = 8
     
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var pickerView: UIPickerView?
     
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton?
     
     
-    @IBOutlet weak var numbersOfCardLabel: UILabel! {
+    @IBOutlet weak var numbersOfCardLabel: UILabel? {
         didSet {
             updateAmountOfCards()
         }
@@ -49,7 +49,7 @@ class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     private func updateAmountOfCards() {
-        numbersOfCardLabel.text = "If you wish to play the game with \(amount) cards, tap Next"
+        numbersOfCardLabel?.text = "If you wish to play the game with \(amount) cards, tap Next"
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -68,7 +68,7 @@ class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPic
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
         let titleData = level[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "Georgia", size: 15.0)!,NSAttributedStringKey.foregroundColor:UIColor.black])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "Georgia", size: 22.0) as Any,NSAttributedStringKey.foregroundColor:UIColor.black])
         pickerLabel.attributedText = myTitle
         pickerLabel.backgroundColor = colorForBackground(viewForRow: row)
         pickerLabel.textAlignment = .center

@@ -12,12 +12,12 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     var numbers: [String] = []
     var amount = 8
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.delegate = self
     }
     
     private func arrayInitialization(){
@@ -33,8 +33,12 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Cells
-        cell.imageView.image = UIImage(named: numbers[indexPath.row] + ".png")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? Cells else {
+            fatalError("Wrong cell type dequeued")
+        }
+        cell.imageView?.image = UIImage(named: numbers[indexPath.row] + ".png")
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Cells
+//        cell.imageView.image = UIImage(named: numbers[indexPath.row] + ".png")
         return cell
     }
     
@@ -45,12 +49,12 @@ class GameController: UIViewController, UICollectionViewDataSource, UICollection
         } else {
             screenWidth = UIScreen.main.bounds.size.width
         }
-        let width = screenWidth / CGFloat(cellSize())
+        let width = screenWidth / CGFloat(cellSize()) - 3
         return CGSize(width: width, height: width)
     }
     
     func cellSize() -> Int {
-        return Int(ceil(sqrt(Double(amount - amount / 6))))
+        return Int(ceil(sqrt(Double(amount - amount / 4))))
     }
     
 }
