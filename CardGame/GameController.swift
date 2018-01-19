@@ -8,53 +8,113 @@
 
 import UIKit
 
-class GameController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    var numbers: [String] = []
+class GameController: UIViewController {
     var amount = 8
+    private var selectedIndexes = Array<IndexPath>()
+    private var flips = 0
+    
+    @IBOutlet weak var flipsLabel: UILabel!
+    
+    private lazy var game = Shuffler(numberOfPairsOfCards: amount / 2)
     
     @IBOutlet weak var collectionView: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
     }
-    
-    private func arrayInitialization(){
-        for i in 1...amount {
-            numbers.append("\(i)")
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        arrayInitialization()
-      //  print(amount)
-        return numbers.count
-    }
+}
+
+//
+//-------------------------- Cards amount and initial view of the cells ---------------------------
+//
+
+extension GameController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? Cells else {
             fatalError("Wrong cell type dequeued")
         }
-        cell.imageView?.image = UIImage(named: numbers[indexPath.row] + ".png")
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Cells
-//        cell.imageView.image = UIImage(named: numbers[indexPath.row] + ".png")
+        cell.initCell()
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return amount
+    }
+}
+
+//
+//--------------------------- Logic of card matching and flipping -------------------------------
+//
+
+extension GameController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexes.append(indexPath)
+        flips += 1
+        flipsLabel.text = "Flips: \(flips)"
+        switch selectedIndexes.count {
+        // first fwo cards flips down and the last of three cards flips up
+        case 3:
+            let cell1 = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
+            let cell2 = collectionView.cellForItem(at: selectedIndexes[1]) as! Cells
+            let cell3 = collectionView.cellForItem(at: selectedIndexes[2]) as! Cells
+            cell1.flipDown()
+            cell2.flipDown()
+            cell3.flipUp(picture: game.pictureForCell(for: game.cards[selectedIndexes[2].row]))
+            selectedIndexes.remove(at: 0)
+            selectedIndexes.remove(at: 0)
+        // if just one card is flipping remove it indexies frowm selectedIndexes
+        // if cards are matched, remove both from view
+        case 2:
+            if selectedIndexes[0] == selectedIndexes[1] {
+                let cell = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
+                cell.flipDown()
+                selectedIndexes.removeAll()
+            } else {
+                let card1 = game.cards[selectedIndexes[0].row]
+                let card2 = game.cards[selectedIndexes[1].row]
+                let cell1 = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
+                let cell2 = collectionView.cellForItem(at: selectedIndexes[1]) as! Cells
+                cell2.flipUp(picture: game.pictureForCell(for: game.cards[selectedIndexes[1].row]))
+                if card1.identifier == card2.identifier {
+                    cell1.remove()
+                    cell2.remove()
+                } 
+            }
+        // just flip one card
+        default:
+            let cell = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
+            cell.flipUp(picture: game.pictureForCell(for: game.cards[selectedIndexes[0].row]))
+        }
+    }
+}
+
+//
+//--------------------------------------- Cells size --------------------------------------------
+//
+
+extension GameController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var screenWidth: CGFloat
+        var screenHeight: CGFloat
+        
         if (UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height) {
             screenWidth = UIScreen.main.bounds.size.height
+            screenHeight = UIScreen.main.bounds.size.width
         } else {
             screenWidth = UIScreen.main.bounds.size.width
+            screenHeight = UIScreen.main.bounds.size.height
         }
-        let width = screenWidth / CGFloat(cellSize()) - 3
+        
+        let width = screenWidth / CGFloat(cellAmount(screenWidth: screenWidth, screenHeight: screenHeight)) - 3
         return CGSize(width: width, height: width)
     }
     
-    func cellSize() -> Int {
-        return Int(ceil(sqrt(Double(amount - amount / 4))))
+    func cellAmount(screenWidth: CGFloat, screenHeight: CGFloat) -> Int {
+        if (screenHeight / screenWidth > 2) {
+            return Int(ceil(sqrt(Double(amount - amount/4))))
+        } else {
+            return Int(ceil(sqrt(Double(amount))) + 1)
+        }
     }
-    
 }
