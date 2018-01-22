@@ -11,7 +11,12 @@ import UIKit
 class GameController: UIViewController {
     var amount = 8
     private var selectedIndexes = Array<IndexPath>()
-    private var flips = 0
+    private var alreadySeenIndexes = Array<IndexPath>()
+    private var cardsCounter = 0
+    private var score = 0
+    private var penalty = 5
+    var timer: Timer!
+  //  var startTime = NSDate.timeIntervalSinceReferenceDate
     
     @IBOutlet weak var flipsLabel: UILabel!
     
@@ -21,6 +26,24 @@ class GameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        cardsCounter = amount
+    }
+
+    func endTheGame() {
+        timer.invalidate()
+        performSegue(withIdentifier: "congrats", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "congrats") {
+            let varForSending = segue.destination as! CongratsController
+            varForSending.score = score
+        }
+    }
+    
+    @objc func updateTimer() {
+        score += 1
     }
 }
 
@@ -50,8 +73,8 @@ extension GameController: UICollectionViewDataSource {
 extension GameController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexes.append(indexPath)
-        flips += 1
-        flipsLabel.text = "Flips: \(flips)"
+       // alreadySeenIndexes.append(indexPath)
+        score += 1
         switch selectedIndexes.count {
         // first fwo cards flips down and the last of three cards flips up
         case 3:
@@ -67,6 +90,8 @@ extension GameController: UICollectionViewDelegate {
         // if cards are matched, remove both from view
         case 2:
             if selectedIndexes[0] == selectedIndexes[1] {
+                alreadySeenIndexes.append(selectedIndexes[0])
+                score += penalty
                 let cell = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
                 cell.flipDown()
                 selectedIndexes.removeAll()
@@ -79,13 +104,26 @@ extension GameController: UICollectionViewDelegate {
                 if card1.identifier == card2.identifier {
                     cell1.remove()
                     cell2.remove()
-                } 
+                    cardsCounter -= 2
+                    if cardsCounter == 0 {
+                        endTheGame()
+                    }
+                } else {
+                     if alreadySeenIndexes.contains(indexPath) {
+                        score += penalty
+                     } else {
+                        alreadySeenIndexes.append(selectedIndexes[0])
+                        alreadySeenIndexes.append(selectedIndexes[1])
+                    }
+                }
             }
         // just flip one card
         default:
             let cell = collectionView.cellForItem(at: selectedIndexes[0]) as! Cells
             cell.flipUp(picture: game.pictureForCell(for: game.cards[selectedIndexes[0].row]))
         }
+        flipsLabel.text = "Score: \(score)"
+        
     }
 }
 
@@ -118,3 +156,26 @@ extension GameController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+//
+//--------------------------------------- Add Timer --------------------------------------------
+//
+
+/*extension GameController {
+    @objc func updateTimer() {
+        let currentTime = NSDate.timeIntervalSinceReferenceDate
+        var elapsedTime: TimeInterval = currentTime - startTime
+        let minutes = UInt8(elapsedTime / 60.0)
+        elapsedTime -= (TimeInterval(minutes) * 60)
+        let seconds = UInt8(elapsedTime)
+        elapsedTime -= TimeInterval(seconds)
+        let fraction = UInt8(elapsedTime * 100)
+        
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        let strFraction = String(format: "%02d", fraction)
+        timerLabel.text = "Timer: \(strMinutes):\(strSeconds):\(strFraction)"
+    }
+
+}*/
+

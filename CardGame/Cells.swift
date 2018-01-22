@@ -37,7 +37,7 @@ class Cells: UICollectionViewCell {
     }
     
     func remove() {
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0
         }) { _ in
             self.removeFromSuperview()

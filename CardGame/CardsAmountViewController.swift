@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CardsAmountViewController: UIViewController {
     var amount = 8
     
     @IBOutlet weak var pickerView: UIPickerView?
@@ -23,8 +23,14 @@ class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         amount = 8
         updateAmountOfCards()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       // self.navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func startNewGame(_ sender: UIButton) {
@@ -40,24 +46,27 @@ class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     private let level = ["baby", "easy", "normal", "hard", "veteran"]
     
+    private func updateAmountOfCards() {
+        numbersOfCardLabel?.text = "If you wish to play the game with \(amount) cards, tap Next"
+    }
+}
+
+extension CardsAmountViewController: UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func returnAmountValue() -> Int {
-        return amount
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return level.count
     }
     
-    private func updateAmountOfCards() {
-        numbersOfCardLabel?.text = "If you wish to play the game with \(amount) cards, tap Next"
-    }
+}
+
+extension CardsAmountViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return level[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return level.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -87,8 +96,3 @@ class CardsAmountViewController: UIViewController, UIPickerViewDataSource, UIPic
         return UIColor(displayP3Red: red, green: green, blue: 0.0, alpha: 1.0)
     }
 }
-
-extension Notification.Name {
-    static let sendCardAmount = Notification.Name(rawValue: "sendCardAmount")
-}
-
