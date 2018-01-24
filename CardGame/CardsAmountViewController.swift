@@ -30,7 +30,6 @@ class CardsAmountViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       // self.navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func startNewGame(_ sender: UIButton) {
@@ -38,7 +37,7 @@ class CardsAmountViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "newGame") {
+        if segue.identifier == "newGame" {
             let varForSending = segue.destination as! GameController
             varForSending.amount = amount
         }

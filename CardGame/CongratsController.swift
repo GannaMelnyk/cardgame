@@ -21,10 +21,7 @@ class CongratsController: UIViewController {
         self.navigationController?.popToViewController(destination!, animated: false)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-    }
+
     
     @IBAction func writeResults(_ sender: UIButton) {
         performSegue(withIdentifier: "name", sender: self)
@@ -38,7 +35,7 @@ class CongratsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  self.navigationController?.isNavigationBarHidden = true
+        self.navigationItem.hidesBackButton = true
         scoreLabel.text = "Congratulations, your score is equal \(score)"
     }
 }

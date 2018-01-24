@@ -10,8 +10,8 @@ import UIKit
 
 class GameController: UIViewController {
     var amount = 8
-    private var selectedIndexes = Array<IndexPath>()
-    private var alreadySeenIndexes = Array<IndexPath>()
+    private var selectedIndexes:[IndexPath] = []
+    private var alreadySeenIndexes:[IndexPath] = []
     private var cardsCounter = 0
     private var score = 0
     private var penalty = 5
@@ -26,7 +26,7 @@ class GameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
         cardsCounter = amount
     }
 
@@ -37,13 +37,16 @@ class GameController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "congrats") {
-            let varForSending = segue.destination as! CongratsController
+         //   let varForSending = segue.destination as! CongratsController
+            let varForSending = segue.destination as! WritingRecordsController
             varForSending.score = score
+            varForSending.cardAmount = amount
         }
     }
     
     @objc func updateTimer() {
         score += 1
+        flipsLabel.text = "Score: \(score)"
     }
 }
 
@@ -132,28 +135,24 @@ extension GameController: UICollectionViewDelegate {
 //
 
 extension GameController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var screenWidth: CGFloat
-        var screenHeight: CGFloat
-        
-        if (UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height) {
-            screenWidth = UIScreen.main.bounds.size.height
-            screenHeight = UIScreen.main.bounds.size.width
-        } else {
-            screenWidth = UIScreen.main.bounds.size.width
-            screenHeight = UIScreen.main.bounds.size.height
-        }
-        
-        let width = screenWidth / CGFloat(cellAmount(screenWidth: screenWidth, screenHeight: screenHeight)) - 3
-        return CGSize(width: width, height: width)
+        let screenWidth = collectionView.frame.width
+        let screenHeight = collectionView.frame.height
+        let side = cellSide(width: screenWidth, height: screenHeight)
+        return CGSize(width: side, height: side)
     }
     
-    func cellAmount(screenWidth: CGFloat, screenHeight: CGFloat) -> Int {
-        if (screenHeight / screenWidth > 2) {
-            return Int(ceil(sqrt(Double(amount - amount/4))))
-        } else {
-            return Int(ceil(sqrt(Double(amount))) + 1)
+    func cellSide(width: CGFloat, height: CGFloat) -> Double {
+        var cellInRow = 1.0
+        var cellInCollomn = ceil(Double(amount)/cellInRow)
+        var oneCellSide = Double(width) / cellInRow
+        while (Double(height) < oneCellSide * cellInCollomn) {
+            cellInRow += 1
+            cellInCollomn = ceil(Double(amount)/cellInRow)
+            oneCellSide = Double(width) / cellInRow
         }
+        return oneCellSide
     }
 }
 

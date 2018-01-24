@@ -11,12 +11,15 @@
 		D32620822014CB68007A98E0 /* CongratsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32620812014CB68007A98E0 /* CongratsController.swift */; };
 		D32620842014DFBD007A98E0 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32620832014DFBD007A98E0 /* NameController.swift */; };
 		D32620862015C1F9007A98E0 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32620852015C1F9007A98E0 /* RootController.swift */; };
+		D32BE35620161E8800B4D44B /* CardGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D32BE35420161E8800B4D44B /* CardGame.xcdatamodeld */; };
+		D32BE379201625EB00B4D44B /* WritingRecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32BE378201625EB00B4D44B /* WritingRecordsController.swift */; };
 		D379F8EF2004DE6000E2A637 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379F8EE2004DE6000E2A637 /* AppDelegate.swift */; };
 		D379F8F42004DE6000E2A637 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D379F8F22004DE6000E2A637 /* Main.storyboard */; };
 		D379F8F62004DE6000E2A637 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D379F8F52004DE6000E2A637 /* Assets.xcassets */; };
 		D379F8F92004DE6000E2A637 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D379F8F72004DE6000E2A637 /* LaunchScreen.storyboard */; };
 		D379F90420050F7B00E2A637 /* CardsAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379F90320050F7B00E2A637 /* CardsAmountViewController.swift */; };
 		D3BA729A200F4A720014C73D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA7299200F4A720014C73D /* Card.swift */; };
+		D3DC028B2017BE9800C28120 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC028A2017BE9800C28120 /* TableCell.swift */; };
 		D3FC5E362007EEE90053CF7D /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FC5E352007EEE90053CF7D /* GameController.swift */; };
 		D3FC5E3B2007FC100053CF7D /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FC5E3A2007FC100053CF7D /* Cells.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +29,8 @@
 		D32620812014CB68007A98E0 /* CongratsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsController.swift; sourceTree = "<group>"; };
 		D32620832014DFBD007A98E0 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
 		D32620852015C1F9007A98E0 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		D32BE35520161E8800B4D44B /* CardGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGame.xcdatamodel; sourceTree = "<group>"; };
+		D32BE378201625EB00B4D44B /* WritingRecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingRecordsController.swift; sourceTree = "<group>"; };
 		D379F8EB2004DE6000E2A637 /* CardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D379F8EE2004DE6000E2A637 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D379F8F32004DE6000E2A637 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		D379F8FA2004DE6000E2A637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D379F90320050F7B00E2A637 /* CardsAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAmountViewController.swift; sourceTree = "<group>"; };
 		D3BA7299200F4A720014C73D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		D3DC028A2017BE9800C28120 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		D3FC5E352007EEE90053CF7D /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		D3FC5E3A2007FC100053CF7D /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,11 +79,14 @@
 				D32620852015C1F9007A98E0 /* RootController.swift */,
 				D379F90320050F7B00E2A637 /* CardsAmountViewController.swift */,
 				D32620812014CB68007A98E0 /* CongratsController.swift */,
+				D3DC028A2017BE9800C28120 /* TableCell.swift */,
 				D3FC5E3A2007FC100053CF7D /* Cells.swift */,
 				D3BA7299200F4A720014C73D /* Card.swift */,
 				D3FC5E352007EEE90053CF7D /* GameController.swift */,
+				D32BE378201625EB00B4D44B /* WritingRecordsController.swift */,
 				D32620832014DFBD007A98E0 /* NameController.swift */,
 				D32214BA200CCF6D00457125 /* Shuffler.swift */,
+				D32BE35420161E8800B4D44B /* CardGame.xcdatamodeld */,
 				D379F8F22004DE6000E2A637 /* Main.storyboard */,
 				D379F8FA2004DE6000E2A637 /* Info.plist */,
 			);
@@ -171,9 +180,12 @@
 				D3FC5E362007EEE90053CF7D /* GameController.swift in Sources */,
 				D379F8EF2004DE6000E2A637 /* AppDelegate.swift in Sources */,
 				D32620842014DFBD007A98E0 /* NameController.swift in Sources */,
+				D32BE35620161E8800B4D44B /* CardGame.xcdatamodeld in Sources */,
+				D3DC028B2017BE9800C28120 /* TableCell.swift in Sources */,
 				D32620862015C1F9007A98E0 /* RootController.swift in Sources */,
 				D379F90420050F7B00E2A637 /* CardsAmountViewController.swift in Sources */,
 				D3BA729A200F4A720014C73D /* Card.swift in Sources */,
+				D32BE379201625EB00B4D44B /* WritingRecordsController.swift in Sources */,
 				D32620822014CB68007A98E0 /* CongratsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +375,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D32BE35420161E8800B4D44B /* CardGame.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D32BE35520161E8800B4D44B /* CardGame.xcdatamodel */,
+			);
+			currentVersion = D32BE35520161E8800B4D44B /* CardGame.xcdatamodel */;
+			path = CardGame.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D379F8E32004DE6000E2A637 /* Project object */;
 }

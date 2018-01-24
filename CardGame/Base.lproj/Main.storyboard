@@ -184,15 +184,15 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LbB-u2-6dU">
                                 <rect key="frame" x="0.0" y="88" width="375" height="663.66666666666663"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="UMS-mW-V7s">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UMS-mW-V7s">
                                     <size key="itemSize" width="66" height="66"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="J2m-sK-uuo" customClass="Cells" customModule="CardGame" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="5" width="66" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
@@ -235,7 +235,8 @@
                     <connections>
                         <outlet property="collectionView" destination="LbB-u2-6dU" id="HKT-cP-XIS"/>
                         <outlet property="flipsLabel" destination="itI-iv-Oor" id="fKe-0W-dOJ"/>
-                        <segue destination="eq5-2m-hs2" kind="show" identifier="congrats" id="egL-ud-vwd"/>
+                        <segue destination="eq5-2m-hs2" kind="show" identifier="congrats1" id="egL-ud-vwd"/>
+                        <segue destination="Qnc-pD-rkP" kind="show" identifier="congrats" id="twd-po-XR8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15C-UR-0Yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -412,6 +413,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFx-Xb-7wi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3629.5999999999999" y="66.502463054187189"/>
+        </scene>
+        <!--Writing Records Controller-->
+        <scene sceneID="adQ-vx-OFJ">
+            <objects>
+                <tableViewController id="Qnc-pD-rkP" customClass="WritingRecordsController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ach-71-9En">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="5" reuseIdentifier="cellId" id="OKo-46-x0p" customClass="TableCell" customModule="CardGame" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OKo-46-x0p" id="3DL-cO-1Oq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="center" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OMV-5H-fbS">
+                                            <rect key="frame" x="5" y="11.999999999999998" width="365" height="20.333333333333329"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v68-w8-cSV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="20.333333333333332"/>
+                                                    <color key="backgroundColor" red="0.76529012057438639" green="1" blue="0.63416126651766969" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s9-QO-2qz">
+                                                    <rect key="frame" x="124.33333333333334" y="0.0" width="116.33333333333334" height="20.333333333333332"/>
+                                                    <color key="backgroundColor" red="0.6853953615954812" green="0.89560199873096447" blue="0.56795609781098477" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQS-R0-bhM">
+                                                    <rect key="frame" x="248.66666666666666" y="0.0" width="116.33333333333334" height="20.333333333333332"/>
+                                                    <color key="backgroundColor" red="0.59812570178775404" green="0.78156725888324874" blue="0.49563968276214443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="OMV-5H-fbS" secondAttribute="trailing" constant="5" id="CdD-uo-6hJ"/>
+                                        <constraint firstItem="OMV-5H-fbS" firstAttribute="leading" secondItem="3DL-cO-1Oq" secondAttribute="leading" constant="5" id="fhy-a3-GqZ"/>
+                                        <constraint firstItem="OMV-5H-fbS" firstAttribute="centerY" secondItem="3DL-cO-1Oq" secondAttribute="centerY" id="mzV-Hg-fBf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardAmountLabel" destination="hQS-R0-bhM" id="BAD-Lh-iMn"/>
+                                    <outlet property="nameLabel" destination="v68-w8-cSV" id="kEQ-SH-OYN"/>
+                                    <outlet property="scoreLabel" destination="5s9-QO-2qz" id="WTE-jn-9ka"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Qnc-pD-rkP" id="jNO-hY-nrr"/>
+                            <outlet property="delegate" destination="Qnc-pD-rkP" id="hIb-BB-sUI"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJU-nQ-pCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2133.5999999999999" y="796.55172413793105"/>
         </scene>
     </scenes>
 </document>
