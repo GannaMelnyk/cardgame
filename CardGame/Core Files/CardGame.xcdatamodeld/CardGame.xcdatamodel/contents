@@ -3,7 +3,7 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Scores" representedClassName="Scores" syncable="YES" codeGenerationType="class">
+    <entity name="Scores" representedClassName=".Scores" syncable="YES">
         <attribute name="cards" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>

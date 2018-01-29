@@ -40,7 +40,8 @@ class Cells: UICollectionViewCell {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0
         }) { _ in
-            self.removeFromSuperview()
+           // self.removeFromSuperview()
+            self.isAccessibilityElement = false
         }
     }
     
